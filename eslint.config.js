@@ -15,12 +15,26 @@ module.exports = [
   },
   {
     files: ["srv/*.js"],
+    ignores: ["**/dist/*", "**/gen/*"],
     rules: {
       ...js.configs.recommended.rules,
     },
     languageOptions: {
       globals: {
         ...globals.node,
+        ...globals.jest,
+        ...globals.es6,
+        SELECT: true,
+        INSERT: true,
+        UPDATE: true,
+        DELETE: true,
+        CREATE: true,
+        DROP: true,
+        CDL: true,
+        CQL: true,
+        CXL: true,
+        cds: true,
+        sap: true,
       },
     },
   },
