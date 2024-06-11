@@ -1,5 +1,5 @@
 _schema-version: '3.1'
-ID: cicd
+ID: zoo
 version: 1.0.0
 description: "My SAP project"
 parameters:
@@ -11,7 +11,7 @@ build-parameters:
         - npm ci
         - npx cds build --production
 modules:
-  - name: cicd-srv
+  - name: zoo-srv
     type: nodejs
     path: gen/srv
     parameters:
@@ -25,29 +25,29 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: cicd-db
-      - name: cicd-auth
+      - name: zoo-db
+      - name: zoo-auth
 
-  - name: cicd-db-deployer
+  - name: zoo-db-deployer
     type: hdb
     path: gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
-      - name: cicd-db
+      - name: zoo-db
 
 resources:
-  - name: cicd-db
+  - name: zoo-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: cicd-auth
+  - name: zoo-auth
     type: org.cloudfoundry.managed-service
     parameters:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
       config:
-        xsappname: cicd-${org}-${space}
+        xsappname: zoo-${org}-${space}
         tenant-mode: dedicated
