@@ -1,10 +1,12 @@
 const cds = require("@sap/cds");
 
 class ZooService extends cds.ApplicationService {
-    async init () {
-        
-        await super.init();
-    };
+  async init() {
+    const eslint = 0;
+    console.log(eslint);
+
+    await super.init();
+  }
 }
 
-module.exports = ZooService
+module.exports = ZooService;
